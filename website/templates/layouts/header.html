@@ -1,0 +1,115 @@
+{% load static %}
+
+<!-- Top Bar -->
+<div class="top-bar">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                {% if settingData %}
+                <a href="tel:{{ settingData.phone }}" class="text-white me-2 text-decoration-none">
+                    <i class="fas fa-phone-alt me-2"></i>
+                        {{ settingData.phone }}
+                </a>
+                {% endif %}
+                <a href="" class="text-white me-2 text-decoration-none">
+                    <i class="far fa-envelope me-2"></i>
+                    {% if settingData %}
+                        {{ settingData.email }}
+                    {% else %}
+                        info@techrastra.com
+                    {% endif %}
+                </a>
+            </div>
+            <div class="col-md-4 text-end">
+                    <span class="me-3">
+                        <i class="far fa-clock me-2"></i>
+                        Monday-Friday : 09:30 pm - 08:30 pm
+                    </span>
+                <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-pinterest"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">
+            {% if settingData.logo %}
+                <img src="{{ settingData.logo.url }}" alt="Techrastra">
+            {% else %}
+                <img src="{% static 'logo/logo.webp' %}" alt="Techrastra">
+            {% endif %}
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">
+                        Home
+                    </a>
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about-us' %}">
+                        About us
+                    </a>
+
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{% url 'service' %}" role="button" data-bs-toggle="dropdown">
+                        Services
+                    </a>
+                    <ul class="dropdown-menu">
+                        {% for service in menuServiceData %}
+                        <li><a class="dropdown-item" href="{% url 'service-details' service.slug %}">
+                            {{ service.title }}
+                        </a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blog' %}">
+                        Blog
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contact' %}">
+                        Contact
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'api-news' %}">
+                        News API
+                    </a>
+
+                </li>
+
+            </ul>
+
+            <div class="d-flex align-items-center">
+                <div class="emergency-phone me-4">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-phone-alt me-2"></i>
+                        <div>
+                            <small class="d-block">Emergency</small>
+                            <strong>515-352-1140</strong>
+                        </div>
+                    </div>
+                </div>
+                <a href="{% url 'service' %}" class="btn-quote">Get a Quote</a>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,23 @@
+{% extends 'layouts/master.html' %}
+
+{% block content %}
+
+<div class="container py-4">
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <h1> Blog Details </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col md-12">
+            {% if blogData.image %}
+            <img src="{{ blogData.image.url }}" alt="{{ blogData.title }}" class="img-fluid">
+            {% endif %}
+            <p>
+                {{ blogData.description | safe }}
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
